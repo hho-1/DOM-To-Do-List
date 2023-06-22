@@ -22,9 +22,16 @@ for (let i = 0; i < innerLiDivs.length; i++) {
 
 
 // Yapildi diye isaretleme
+
+
 console.log(checkButtons.length);
 
-
+/* let listem = document.querySelector('ul');
+listem.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false); */
 
 for (let i = 0; i < innerLiDivs.length; i++) {
     checkButtons[i].addEventListener('click', () => {
@@ -97,14 +104,12 @@ addNewButton.addEventListener('click', () => {
 
     //sil
     
+    innerLiDivs = document.querySelectorAll(".list-item")
+    LIs = document.querySelectorAll(".LiElement")
+    trashButtons = document.querySelectorAll(".trash-button")
+
+
     for (let i = 0; i < innerLiDivs.length; i++) {
-        
-        
-        innerLiDivs = document.querySelectorAll(".list-item")
-        LIs = document.querySelectorAll(".LiElement")
-        trashButtons = document.querySelectorAll(".trash-button")
-        
-        
         trashButtons[i].addEventListener('click', () => {
             LIs[i].style.display = "none";
     })
@@ -112,43 +117,39 @@ addNewButton.addEventListener('click', () => {
     
     //yapildi
     
-    
+    innerLiDivs = document.querySelectorAll(".list-item")
+    listItemTexts = document.querySelectorAll(".list-item-text")
+    checkButtons = document.querySelectorAll(".fa-check")
     
     for (let i = 0; i < innerLiDivs.length; i++) {
         
-        
-        innerLiDivs = document.querySelectorAll(".list-item")
-        listItemTexts = document.querySelectorAll(".list-item-text")
-        checkButtons = document.querySelectorAll(".fa-check")
         
         checkButtons[i].addEventListener('click', () => {
             
             let myLiDivArray = Array.from(innerLiDivs)
             if(!(myLiDivArray[i].classList.contains("done"))){
-            
+        
                 innerLiDivs[i].style.textDecorationLine = "line-through";
                 innerLiDivs[i].style.textDecorationColor = "red";
                 innerLiDivs[i].style.textDecorationStyle = "double";
                 checkButtons[i].style.color = "red";
                 innerLiDivs[i].style.fontStyle = "italic";
                 innerLiDivs[i].style.backgroundColor = "#ffa066"
-    
+
                 innerLiDivs[i].classList.add("done")
-          
+      
             }
             else{
                 innerLiDivs[i].style.textDecorationLine = "none";
                 checkButtons[i].style.color = "green";
                 innerLiDivs[i].style.backgroundColor = "inherit";
                 innerLiDivs[i].style.fontStyle = "normal";
-    
+
                 innerLiDivs[i].classList.remove("done")
             }
-        })   
+        }) 
+     
     }
-    
-    
-
 })
 
 
