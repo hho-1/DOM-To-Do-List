@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checklist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <!--let todolist = JSON.parse(localstorage.getItem("todolist") || []--> 
+    <!--localStorage.setItem("todolist", value // JSON.stringify(todolist))--> 
+    <!--localStorage.getItem("abdullah"))--> 
+    <!--clg localStorage.getItem("abdullah"))       10 döner--> 
+
+<div class="container">
+
+    <h1>Don't forget to...</h1>
+    <ul class="liste">
+        <li class="LiElement">
+            <div class="list-item">
+                <span class="list-item-text"><i class="fa-solid fa-check"></i>Visit pharmacy</span> 
+                <button class="trash-button"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+        </li>
+        <li class="LiElement">
+            <div class="list-item done">
+                <span class="list-item-text"><i class="fa-solid fa-check"></i>Cook for dinner</span> 
+                <button class="trash-button"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+        </li>
+        <li class="LiElement">
+            <div class="list-item">
+                <span class="list-item-text"><i class="fa-solid fa-check"></i>Call uncle Sam</span> 
+                <button class="trash-button"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+        </li>
+        
+        
+    
+    </ul>
+
+    <div class="addNew">
+        <input id="addNewText" type="text" placeholder="Add new task">
+        <button id="addNewButton" type="button">Add</button>
+    </div>
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+    <script src="checklist.js"></script>
+</body>
+</html>

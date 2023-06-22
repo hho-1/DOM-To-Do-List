@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+.container{
+    width: 40vw;
+    margin: auto;
+    margin-top: 18vh;
+    background-color:bisque;
+    padding: 1rem;
+    text-align: center;
+    min-height: 50vh;
+    border-radius: 20px;
+}
+h1{
+    margin: 2rem 0;
+}
+.list-item{
+    margin-top: 0.3rem;
+    
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+.list-item-text{
+    font-size: 1.2rem;
+    
+}
+.fa-check{
+    
+    color: green;
+    font-size: 1.6rem;
+    cursor: pointer;
+    
+    padding: 1rem 2rem;
+    transition: 0.3s;
+    
+}
+.fa-check:hover{
+    transform: scale(1.4);
+    
+}
+ul li{
+    list-style-type: none;
+    position: relative;
+    background: #eee;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+ul li:hover {
+    background: #ddd;
+}
+
+.done{
+    background-color: #ffa066;
+}
+.done span.list-item-text{
+    text-decoration: line-through double red;
+    font-style: italic;
+}
+.done i.fa-check{
+    color: red;
+}
+
+
+
+.trash-button{
+    font-size: 1.5rem;
+    width: 6rem;
+    border-radius: 10px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: tomato;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.trash-button:hover{
+    background-color: rgb(243, 64, 33);
+    font-size: 2rem;
+}
+.fa-trash-can{
+    padding: 1rem 1rem;
+}
+/* .fa-trash-can:hover{
+    transform: scale(1.2);
+} */
+.addNew{
+    margin-top: 15vh;
+    
+    
+}
+.addNew input{
+    padding: 1rem 1.5rem;
+    width: 30vw;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+}
+.addNew button{
+    padding: 1rem;
+    width: 8vw;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #0794ff;
+    color: white;
+    transition: 0.3s;
+    
+}
+.addNew button:hover{
+    background-color: #026ab9;
+    cursor: pointer;
+    
+}
