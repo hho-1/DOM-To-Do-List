@@ -51,7 +51,7 @@ ul li{
     list-style-type: none;
     position: relative;
     background: #eee;
-    transition: 0.2s;
+    transition: 0.4s ease-in-out;
     border-radius: 10px;
 }
 ul li:nth-child(odd) {
@@ -65,13 +65,16 @@ ul li:hover {
     background-color: #ffa066;
 }
 .done span.list-item-text{
-    text-decoration: line-through double red;
+    text-decoration: line-through red;
+    text-decoration-thickness: .2rem;
     font-style: italic;
 }
 .done i.fa-check{
     color: red;
 }
-
+.kaybol{
+    transform: scale(0);
+}
 
 
 .trash-button{
@@ -94,6 +97,7 @@ ul li:hover {
 }
 .fa-trash-can{
     padding: 1rem 1rem;
+    pointer-events: none;
 }
 /* .fa-trash-can:hover{
     transform: scale(1.2);

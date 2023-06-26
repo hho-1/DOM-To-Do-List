@@ -5,77 +5,120 @@ let innerLiDivs = document.querySelectorAll(".list-item")
 let listItemTexts = document.querySelectorAll(".list-item-text")
 let checkButtons = document.querySelectorAll(".fa-check")
 let trashButtons = document.querySelectorAll(".trash-button")
+
+
+
+
 let addNewClass = document.querySelector(".addNew")
 let addNewText = document.getElementById("addNewText")
 let addNewButton = document.getElementById("addNewButton")
 
 
-//Silme
-
-console.log(innerLiDivs.length);
-
-for (let i = 0; i < innerLiDivs.length; i++) {
-    trashButtons[i].addEventListener('click', () => {
-      LIs[i].style.display = "none";
-})
-}
+addNewButton.addEventListener('click', addTask);
 
 
-// Yapildi diye isaretleme
+ulElement.addEventListener('click', taskCompleteORDelete)
+
+//document.addEventListener('DOMContentLoaded', ReadFromLocalStorage);
 
 
-console.log(checkButtons.length);
 
-/* let listem = document.querySelector('ul');
-listem.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+
+addNewText.addEventListener("keypress", function(event) {
+  
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addNewButton.click();
   }
-}, false); */
+});
 
-for (let i = 0; i < innerLiDivs.length; i++) {
-    checkButtons[i].addEventListener('click', () => {
-        let myLiDivArray = Array.from(innerLiDivs)
-        if(!(myLiDivArray[i].classList.contains("done"))){
+function taskCompleteORDelete(e){
+
+    const clickedButton = e.target;
+
+    if (e.target.classList.contains("fa-check")){
+        e.target.parentElement.parentElement.classList.toggle("done")
+        //console.log(e.target.parentElement.parentElement.classList);
+    }
+    if (clickedButton.classList.contains("trash-button")){
         
-            innerLiDivs[i].style.textDecorationLine = "line-through";
-            innerLiDivs[i].style.textDecorationColor = "red";
-            innerLiDivs[i].style.textDecorationStyle = "double";
-            checkButtons[i].style.color = "red";
-            innerLiDivs[i].style.fontStyle = "italic";
-            innerLiDivs[i].style.backgroundColor = "#ffa066"
+        if(confirm('Are you sure???')){
+            clickedButton.parentElement.parentElement.classList.toggle('kaybol');
 
-            innerLiDivs[i].classList.add("done")
-      
-        }
-        else{
-            innerLiDivs[i].style.textDecorationLine = "none";
-            checkButtons[i].style.color = "green";
-            innerLiDivs[i].style.backgroundColor = "inherit";
-            innerLiDivs[i].style.fontStyle = "normal";
+            const silinecekTask = clickedButton.parentElement.children[1].innerText
+        
+            deleteLocalStorage(silinecekTask)
 
-            innerLiDivs[i].classList.remove("done")
+            clickedButton.parentElement.parentElement.addEventListener('transitionend', function(){
+                clickedButton.parentElement.parentElement.remove();
+            })
         }
-    })   
+        
+        
+    }
 }
 
-// Yeni görev ekleme
 
-addNewButton.addEventListener('click', () => {
+function addTask(e){
     
+    
+    e.preventDefault();
+
+    if(addNewText.value.length > 0){
+        createTaskItem(addNewText.value)
+    saveToLocalStorage(addNewText.value)
+
+    addNewText.value = ""
+    }
+    else{
+        alert('Please add a task!!!')
+    }
+
+    
+}
+
+function saveToLocalStorage(newTask){
+    let tasks;
+
+    if(localStorage.getItem('tasks') === null){
+        tasks = []
+    }
+    else{
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+    }
+
+    tasks.push(newTask)
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+function ReadFromLocalStorage(){
+    let tasks;
+
+    if(localStorage.getItem('tasks') === null){
+        tasks = []
+    }
+    else{
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+    }
+
+    tasks.forEach((task) => {
+        createTaskItem(task)
+    })
+}
+
+function createTaskItem(task){
     let newLi = document.createElement("li");
-    newLi.className = "LiElement"
+    newLi.classList.add("LiElement");
     
 
-    let newListItemDiv = document.createElement("div")
-    newListItemDiv.className = "list-item";
+    let newListItemDiv = document.createElement("div");
+    newListItemDiv.classList.add("list-item");
     
 
     let newListItemText = document.createElement("span")
-    newListItemText.className = "list-item-text"
+    newListItemText.classList.add("list-item-text")
+    newListItemText.innerText = task;
     
-
-
     
     let newInput = addNewText.value; 
     let temp = document.createTextNode(newInput);
@@ -92,65 +135,24 @@ addNewButton.addEventListener('click', () => {
     newListItemDiv.appendChild(newListItemText);
     newLi.appendChild(newListItemDiv);
 
-    if(newInput === ''){
-        alert("Please write a task!!");
+    
+    ulElement.appendChild(newLi)
+
+
+}
+
+function deleteLocalStorage(task){
+    let tasks;
+
+    if(localStorage.getItem('tasks') === null){
+        tasks = []
     }
     else{
-        ulElement.appendChild(newLi)
-
+        tasks = JSON.parse(localStorage.getItem('tasks'))
     }
-    addNewText.value = ""
 
+    const silinecekElemanIndex = tasks.indexOf(task)
+    tasks.splice(silinecekElemanIndex, 1)
 
-    //sil
-    
-    innerLiDivs = document.querySelectorAll(".list-item")
-    LIs = document.querySelectorAll(".LiElement")
-    trashButtons = document.querySelectorAll(".trash-button")
-
-
-    for (let i = 0; i < innerLiDivs.length; i++) {
-        trashButtons[i].addEventListener('click', () => {
-            LIs[i].style.display = "none";
-    })
-    }
-    
-    //yapildi
-    
-    innerLiDivs = document.querySelectorAll(".list-item")
-    listItemTexts = document.querySelectorAll(".list-item-text")
-    checkButtons = document.querySelectorAll(".fa-check")
-    
-    for (let i = 0; i < innerLiDivs.length; i++) {
-        
-        
-        checkButtons[i].addEventListener('click', () => {
-            
-            let myLiDivArray = Array.from(innerLiDivs)
-            if(!(myLiDivArray[i].classList.contains("done"))){
-        
-                innerLiDivs[i].style.textDecorationLine = "line-through";
-                innerLiDivs[i].style.textDecorationColor = "red";
-                innerLiDivs[i].style.textDecorationStyle = "double";
-                checkButtons[i].style.color = "red";
-                innerLiDivs[i].style.fontStyle = "italic";
-                innerLiDivs[i].style.backgroundColor = "#ffa066"
-
-                innerLiDivs[i].classList.add("done")
-      
-            }
-            else{
-                innerLiDivs[i].style.textDecorationLine = "none";
-                checkButtons[i].style.color = "green";
-                innerLiDivs[i].style.backgroundColor = "inherit";
-                innerLiDivs[i].style.fontStyle = "normal";
-
-                innerLiDivs[i].classList.remove("done")
-            }
-        }) 
-     
-    }
-})
-
-
-
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
